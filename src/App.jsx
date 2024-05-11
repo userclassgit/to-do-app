@@ -5,6 +5,11 @@ import './css/reset.css';
 function App() {
   const [newItem, setNewItem] = useState('');
 
+  // Helper functions
+  function addItem() {
+    console.log('Adding item', newItem)
+  }
+
   return (
     <div>
       <h1>To-do list app</h1>
@@ -12,8 +17,9 @@ function App() {
         type="text"
         placeholder="Add an item"
         value = {newItem}
+        onChange = {(e) => setNewItem(e.target.value)}
       />
-      <button>Add</button>
+      <button onClick={() => addItem()}>Add</button>
       <ul>
         <li>take out the trash</li>
         <li>water the plants</li>
