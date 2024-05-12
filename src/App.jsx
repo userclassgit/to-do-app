@@ -6,18 +6,17 @@ function App() {
   const [newItem, setNewItem] = useState('');
   const [items, setItems] = useState([]);
 
-  // Helper functions
   function addItem() {
     if (!newItem) {
-      // Add validation for when the input is empty.
+      // *****Add validation for when the input is empty.
     }
-
+    // *****Create a new component instead.
     const item = {
-      // Find a better way to generate unique ids later.
+      // *****Find a better way to generate unique ids later.
       id: Math.floor(Math.random() * 1000),
       value: newItem
     };
-    // oldList is the previous state of the items array.
+    
     setItems(oldList => [...oldList, item]);
     setNewItem('');
 
