@@ -30,7 +30,7 @@ function App() {
   }
 
   return (
-    <>
+    <div className='container horizontally-center-column'>
       <h1>To-do list app</h1>
       <div className="input-and-btn">
         <input
@@ -48,7 +48,7 @@ function App() {
           )
         })}
       </ul>
-    </>
+    </div>
   );
 }
 

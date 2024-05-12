@@ -5,7 +5,7 @@
 } */
 
 .container {
-  width: min(100% - 30px, 1080px);
+  width: min(100% - 30px, 600px);
   margin-inline: auto;
 }
 
@@ -17,6 +17,18 @@
 
 .flex {
   display: flex;
+}
+
+.horizontally-center-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.horizontal-space-between {
+  display: flex;
+  justify-content: space-between;
+
 }
 
 body {
@@ -52,4 +64,10 @@ body {
 
 ul {
   flex-grow: 1;
+  list-style-type: none;
+  width: 20rem;
+  .list-item {
+    /* width: 100%; */
+  }
 }
+
