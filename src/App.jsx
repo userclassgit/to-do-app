@@ -16,7 +16,7 @@ function App() {
       id: Math.floor(Math.random() * 1000),
       value: newItem
     };
-    
+
     setItems(oldList => [...oldList, item]);
     setNewItem('');
 
@@ -29,15 +29,17 @@ function App() {
   }
 
   return (
-    <div>
+    <>
       <h1>To-do list app</h1>
-      <input
-        type="text"
-        placeholder="Add an item"
-        value = {newItem}
-        onChange = {(e) => setNewItem(e.target.value)}
-      />
-      <button onClick={() => addItem()}>Add</button>
+      <div className="input-and-btn">
+        <input
+          type="text"
+          placeholder="Add an item"
+          value={newItem}
+          onChange={(e) => setNewItem(e.target.value)}
+        />
+        <button onClick={() => addItem()}>Add</button>
+      </div>
       <ul>
         {items.map(item => {
           return (
@@ -48,7 +50,7 @@ function App() {
           )
         })}
       </ul>
-    </div>
+    </>
   );
 }
 
