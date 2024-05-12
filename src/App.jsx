@@ -4,10 +4,29 @@ import './css/reset.css';
 
 function App() {
   const [newItem, setNewItem] = useState('');
+  const [items, setItems] = useState([]);
 
   // Helper functions
   function addItem() {
-    console.log('Adding item', newItem)
+    if (!newItem) {
+      // Add validation for when the input is empty.
+    }
+
+    const item = {
+      // Find a better way to generate unique ids later.
+      id: Math.floor(Math.random() * 1000),
+      value: newItem
+    };
+    // oldList is the previous state of the items array.
+    setItems(oldList => [...oldList, item]);
+    setNewItem('');
+
+    console.log(items);
+  }
+
+  function deleteItem(id) {
+    const newArray = items.filter(item => item.id !== id);
+    setItems(newArray);
   }
 
   return (
@@ -21,9 +40,14 @@ function App() {
       />
       <button onClick={() => addItem()}>Add</button>
       <ul>
-        <li>take out the trash</li>
-        <li>water the plants</li>
-        <li>go to the gym</li>
+        {items.map(item => {
+          return (
+            <li key={item.id}>
+              {item.value}
+              <button onClick={() => deleteItem(item.id)}>Delete</button>
+            </li>
+          )
+        })}
       </ul>
     </div>
   );
