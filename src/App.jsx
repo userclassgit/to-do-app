@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import TodoItem from './component/TodoItems';
 import './css/styles.css';
 import './css/reset.css';
 
@@ -43,10 +44,7 @@ function App() {
       <ul>
         {items.map(item => {
           return (
-            <li key={item.id}>
-              {item.value}
-              <button onClick={() => deleteItem(item.id)}>Delete</button>
-            </li>
+            <TodoItem key={item.id} item={item} deleteItem={deleteItem} />
           )
         })}
       </ul>
