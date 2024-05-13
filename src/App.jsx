@@ -2,6 +2,7 @@ import { useState } from 'react';
 import TodoItem from './component/TodoItems';
 import './css/styles.css';
 import './css/reset.css';
+import { v4 as uuidv4 } from 'uuid';
 
 function App() {
   const [newItem, setNewItem] = useState('');
@@ -14,7 +15,7 @@ function App() {
     // *****Create a new component instead.
     const item = {
       // *****Find a better way to generate unique ids later.
-      id: Math.floor(Math.random() * 1000),
+      id: uuidv4(),
       value: newItem
     };
 
@@ -30,7 +31,6 @@ function App() {
   }
 
   function updateItem(id, newValue) {
-    console.log(`updateItem called with id: ${id} and newValue: ${newValue}`);
     setItems((prevItems) =>
       // {...item, value: abc} creates a modified copy of the item object
       //  but with the value property set to newValue
