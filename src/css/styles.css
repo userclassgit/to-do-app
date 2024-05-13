@@ -66,8 +66,7 @@ ul {
   flex-grow: 1;
   list-style-type: none;
   width: 20rem;
-  .list-item {
-    /* width: 100%; */
-  }
+  /* .list-item {
+  } */
 }
 

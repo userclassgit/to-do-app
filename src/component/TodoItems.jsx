@@ -1,10 +1,33 @@
+import React, { useState } from 'react';
 
+function TodoItem({ item, deleteItem, updateItem }) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedValue, setEditedValue] = useState(item.value);
 
-function TodoItem({ item, deleteItem }) {
   return (
     <li key={item.id} className="list-item horizontal-space-between">
-      {item.value}
-      <button onClick={() => deleteItem(item.id)}>Delete</button>
+      {isEditing ? (
+        <input
+          type="text"
+          value={editedValue}
+          onChange={(e) => setEditedValue(e.target.value)}
+        />
+      ) : (
+        item.value
+      )}
+      <button onClick={() => setIsEditing(true)}>Edit</button>
+      {isEditing ? (
+        <button
+          onClick={() => {
+            updateItem(item.id, editedValue);
+            setIsEditing(false);
+          }}
+        >
+          Save
+        </button>
+      ) : (
+        <button onClick={() => deleteItem(item.id)}>Delete</button>
+      )}
     </li>
   );
 }

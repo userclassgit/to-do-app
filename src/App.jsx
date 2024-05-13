@@ -29,6 +29,15 @@ function App() {
     setItems(newArray);
   }
 
+  function updateItem(id, newValue) {
+    console.log(`updateItem called with id: ${id} and newValue: ${newValue}`);
+    setItems((prevItems) =>
+      // {...item, value: abc} creates a modified copy of the item object
+      //  but with the value property set to newValue
+      prevItems.map((item) => (item.id === id ? { ...item, value: newValue } : item))
+    );
+  }
+
   return (
     <div className='container horizontally-center-column'>
       <h1>To-do list app</h1>
@@ -44,7 +53,7 @@ function App() {
       <ul>
         {items.map(item => {
           return (
-            <TodoItem key={item.id} item={item} deleteItem={deleteItem} />
+            <TodoItem key={item.id} item={item} deleteItem={deleteItem} updateItem={updateItem} />
           )
         })}
       </ul>
