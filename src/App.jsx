@@ -12,9 +12,7 @@ function App() {
     if (!newItem) {
       // *****Add validation for when the input is empty.
     }
-    // *****Create a new component instead.
     const item = {
-      // *****Find a better way to generate unique ids later.
       id: uuidv4(),
       value: newItem
     };
