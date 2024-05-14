@@ -1,8 +1,10 @@
 @charset "utf-8";
 
-/* :root {
-
-} */
+:root {
+  --black: #000;
+  --bg-beige: #F6ECC9;
+  --input-beige: #DED5B5;
+}
 
 .container {
   width: min(100% - 30px, 600px);
