@@ -15,6 +15,9 @@ function TodoItem({ item, deleteItem, updateItem }) {
           />
           <button
             onClick={() => {
+              if (!editedValue.trim()) {
+                return;
+              }
               updateItem(item.id, editedValue);
               setIsEditing(false);
             }}
