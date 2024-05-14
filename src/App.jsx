@@ -8,6 +8,8 @@ function App() {
   const savedItems = JSON.parse(localStorage.getItem('items')) || [];
   const [newItem, setNewItem] = useState('');
   const [items, setItems] = useState(savedItems);
+  const [isValid, setIsValid] = useState(true);
+
 
   useEffect(() => {
     localStorage.setItem('items', JSON.stringify(items));
@@ -15,17 +17,19 @@ function App() {
 
   function addItem() {
     if (!newItem) {
-      // *****Add validation for when the input is empty.
+      setIsValid(false);
+    } else {
+      const item = {
+        id: uuidv4(),
+        value: newItem
+      };
+
+      setItems(oldList => [...oldList, item]);
+      setNewItem('');
+
+      console.log(items);
+      setIsValid(true);
     }
-    const item = {
-      id: uuidv4(),
-      value: newItem
-    };
-
-    setItems(oldList => [...oldList, item]);
-    setNewItem('');
-
-    console.log(items);
   }
 
   function deleteItem(id) {
@@ -51,6 +55,7 @@ function App() {
           value={newItem}
           onChange={(e) => setNewItem(e.target.value)}
         />
+        {!isValid && <p className='validation-msg'>Please enter a value.</p>}
         <button onClick={() => addItem()}>Add</button>
       </div>
       <ul>
