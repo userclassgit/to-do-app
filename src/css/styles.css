@@ -59,8 +59,12 @@ body {
   input {
     padding-inline: .5rem;
   }
-  button {
+  .add-btn {
     width: 3rem;
+    background: url('../media/add-btn.png') no-repeat center center;
+    background-size: contain;
+    border: none;
+    cursor: pointer;
   }
 }
 

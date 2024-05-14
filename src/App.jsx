@@ -3,6 +3,7 @@ import TodoItem from './component/TodoItems';
 import './css/styles.css';
 import './css/reset.css';
 import { v4 as uuidv4 } from 'uuid';
+import addBtnImg from './media/add-btn.png'
 
 const initialState = {
   newItem: '',
@@ -66,7 +67,7 @@ function App() {
           onChange={(e) => dispatch({ type: 'set_new_item', payload: e.target.value })}
         />
         {!state.isValid && <p className='error-message'>Please enter a value.</p>}
-        <button onClick={() => addItem()}>Add</button>
+        <button className='add-btn' onClick={() => addItem()}></button>
       </div>
       <ul>
         <ul>
