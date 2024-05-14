@@ -27,25 +27,29 @@ function TodoItem({ item, deleteItem, updateItem }) {
             value={state.editedValue}
             onChange={(e) => dispatch({ type: 'set_edited_value', payload: e.target.value })}
           />
-          <button
-            onClick={() => {
-              if (!state.editedValue.trim()) {
-                return;
-              }
-              updateItem(item.id, state.editedValue);
-              dispatch({ type: 'set_editing', payload: false });
-            }}
-          >
-            Save
-          </button>
-          <button onClick={() => deleteItem(item.id)}>Delete</button>
+          <div className="right-hand-buttons">
+            <button
+              onClick={() => {
+                if (!state.editedValue.trim()) {
+                  return;
+                }
+                updateItem(item.id, state.editedValue);
+                dispatch({ type: 'set_editing', payload: false });
+              }}
+            >
+              Save
+            </button>
+            <button onClick={() => deleteItem(item.id)}>Delete</button>
+          </div>
         </>
       ) : (
         <>
           <button onClick={() => dispatch({ type: 'toggle_completed' })}>Complete</button>
-          <span className={state.isCompleted ? 'completed' : ''}>{item.value}</span>
-          <button onClick={() => dispatch({ type: 'set_editing', payload: true })}>Edit</button>
-          <button onClick={() => deleteItem(item.id)}>Delete</button>
+          <span className={`item-text ${state.isCompleted ? 'completed' : ''}`}>{item.value}</span>
+          <div className="right-hand-buttons">
+            <button onClick={() => dispatch({ type: 'set_editing', payload: true })}>Edit</button>
+            <button onClick={() => deleteItem(item.id)}>Delete</button>
+          </div>
         </>
       )}
     </li>

@@ -78,6 +78,13 @@ ul {
   } */
 }
 
+.item-text {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .completed {
   text-decoration: line-through;
 }
