@@ -1,12 +1,17 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import TodoItem from './component/TodoItems';
 import './css/styles.css';
 import './css/reset.css';
 import { v4 as uuidv4 } from 'uuid';
 
 function App() {
+  const savedItems = JSON.parse(localStorage.getItem('items')) || [];
   const [newItem, setNewItem] = useState('');
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState(savedItems);
+
+  useEffect(() => {
+    localStorage.setItem('items', JSON.stringify(items));
+  }, [items]);
 
   function addItem() {
     if (!newItem) {
