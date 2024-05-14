@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 function TodoItem({ item, deleteItem, updateItem }) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedValue, setEditedValue] = useState(item.value);
+  const [isCompleted, setIsCompleted] = useState(false);
 
   return (
     <li key={item.id} className="list-item horizontal-space-between">
@@ -28,7 +29,8 @@ function TodoItem({ item, deleteItem, updateItem }) {
         </>
       ) : (
         <>
-          {item.value}
+          <button onClick={() => setIsCompleted(!isCompleted)}>Complete</button>
+          <span className={isCompleted ? 'completed' : ''}>{item.value}</span>
           <button onClick={() => setIsEditing(true)}>Edit</button>
           <button onClick={() => deleteItem(item.id)}>Delete</button>
         </>
