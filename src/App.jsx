@@ -12,9 +12,9 @@ const initialState = {
 
 function reducer(state, action) {
   switch (action.type) {
-    case 'SET_NEW_ITEM':
+    case 'set_new_item':
       return { ...state, newItem: action.payload, isValid: true };
-    case 'ADD_ITEM':
+    case 'add_item':
       if (!action.payload) {
         return { ...state, isValid: false };
       } else {
@@ -24,9 +24,9 @@ function reducer(state, action) {
         };
         return { ...state, items: [...state.items, item], newItem: '', isValid: true };
       }
-    case 'DELETE_ITEM':
+    case 'delete_item':
       return { ...state, items: state.items.filter(item => item.id !== action.payload) };
-    case 'UPDATE_ITEM':
+    case 'update_item':
       return {
         ...state,
         items: state.items.map((item) => (item.id === action.payload.id ? { ...item, value: action.payload.newValue } : item))
@@ -44,15 +44,15 @@ function App() {
   }, [state.items]);
 
   const addItem = () => {
-    dispatch({ type: 'ADD_ITEM', payload: state.newItem });
+    dispatch({ type: 'add_item', payload: state.newItem });
   };
 
   const deleteItem = (id) => {
-    dispatch({ type: 'DELETE_ITEM', payload: id });
+    dispatch({ type: 'delete_item', payload: id });
   };
 
   const updateItem = (id, newValue) => {
-    dispatch({ type: 'UPDATE_ITEM', payload: { id, newValue } });
+    dispatch({ type: 'update_item', payload: { id, newValue } });
   };
 
   return (
@@ -63,7 +63,7 @@ function App() {
           type="text"
           placeholder="Add an item"
           value={state.newItem}
-          onChange={(e) => dispatch({ type: 'SET_NEW_ITEM', payload: e.target.value })}
+          onChange={(e) => dispatch({ type: 'set_new_item', payload: e.target.value })}
         />
         {!state.isValid && <p className='error-message'>Please enter a value.</p>}
         <button onClick={() => addItem()}>Add</button>
