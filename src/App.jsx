@@ -55,7 +55,7 @@ function App() {
           value={newItem}
           onChange={(e) => setNewItem(e.target.value)}
         />
-        {!isValid && <p className='validation-msg'>Please enter a value.</p>}
+        {!isValid && <p className='error-message'>Please enter a value.</p>}
         <button onClick={() => addItem()}>Add</button>
       </div>
       <ul>

@@ -62,6 +62,12 @@ body {
   }
 }
 
+.error-message {
+  color: red;
+  position: absolute;
+  margin-top: 5px;
+}
+
 ul {
   flex-grow: 1;
   list-style-type: none;
