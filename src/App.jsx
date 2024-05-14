@@ -1,49 +1,59 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useReducer } from 'react';
 import TodoItem from './component/TodoItems';
 import './css/styles.css';
 import './css/reset.css';
 import { v4 as uuidv4 } from 'uuid';
 
-function App() {
-  const savedItems = JSON.parse(localStorage.getItem('items')) || [];
-  const [newItem, setNewItem] = useState('');
-  const [items, setItems] = useState(savedItems);
-  const [isValid, setIsValid] = useState(true);
+const initialState = {
+  newItem: '',
+  items: JSON.parse(localStorage.getItem('items')) || [],
+  isValid: true,
+};
 
+function reducer(state, action) {
+  switch (action.type) {
+    case 'SET_NEW_ITEM':
+      return { ...state, newItem: action.payload, isValid: true };
+    case 'ADD_ITEM':
+      if (!action.payload) {
+        return { ...state, isValid: false };
+      } else {
+        const item = {
+          id: uuidv4(),
+          value: action.payload
+        };
+        return { ...state, items: [...state.items, item], newItem: '', isValid: true };
+      }
+    case 'DELETE_ITEM':
+      return { ...state, items: state.items.filter(item => item.id !== action.payload) };
+    case 'UPDATE_ITEM':
+      return {
+        ...state,
+        items: state.items.map((item) => (item.id === action.payload.id ? { ...item, value: action.payload.newValue } : item))
+      };
+    default:
+      throw new Error();
+  }
+}
+
+function App() {
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    localStorage.setItem('items', JSON.stringify(items));
-  }, [items]);
+    localStorage.setItem('items', JSON.stringify(state.items));
+  }, [state.items]);
 
-  function addItem() {
-    if (!newItem) {
-      setIsValid(false);
-    } else {
-      const item = {
-        id: uuidv4(),
-        value: newItem
-      };
+  const addItem = () => {
+    dispatch({ type: 'ADD_ITEM', payload: state.newItem });
+  };
 
-      setItems(oldList => [...oldList, item]);
-      setNewItem('');
+  const deleteItem = (id) => {
+    dispatch({ type: 'DELETE_ITEM', payload: id });
+  };
 
-      console.log(items);
-      setIsValid(true);
-    }
-  }
-
-  function deleteItem(id) {
-    const newArray = items.filter(item => item.id !== id);
-    setItems(newArray);
-  }
-
-  function updateItem(id, newValue) {
-    setItems((prevItems) =>
-      // {...item, value: abc} creates a modified copy of the item object
-      //  but with the value property set to newValue
-      prevItems.map((item) => (item.id === id ? { ...item, value: newValue } : item))
-    );
-  }
+  const updateItem = (id, newValue) => {
+    dispatch({ type: 'UPDATE_ITEM', payload: { id, newValue } });
+  };
 
   return (
     <div className='container horizontally-center-column'>
@@ -52,18 +62,20 @@ function App() {
         <input
           type="text"
           placeholder="Add an item"
-          value={newItem}
-          onChange={(e) => setNewItem(e.target.value)}
+          value={state.newItem}
+          onChange={(e) => dispatch({ type: 'SET_NEW_ITEM', payload: e.target.value })}
         />
-        {!isValid && <p className='error-message'>Please enter a value.</p>}
+        {!state.isValid && <p className='error-message'>Please enter a value.</p>}
         <button onClick={() => addItem()}>Add</button>
       </div>
       <ul>
-        {items.map(item => {
-          return (
-            <TodoItem key={item.id} item={item} deleteItem={deleteItem} updateItem={updateItem} />
-          )
-        })}
+        <ul>
+          {state.items.map(item => {
+            return (
+              <TodoItem key={item.id} item={item} deleteItem={deleteItem} updateItem={updateItem} />
+            )
+          })}
+        </ul>
       </ul>
     </div>
   );
