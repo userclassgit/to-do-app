@@ -38,6 +38,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: nowrap;
 }
 
 body {
@@ -89,21 +90,30 @@ body {
 ul {
   flex-grow: 1;
   list-style-type: none;
-  width: 20rem;
+  width: 25rem;
   .list-item {
     background-color: var(--item-beige);
     padding: 1rem;
+    height: 4.4rem;
     margin-bottom: 1rem;
     border-radius: 16px;
+    input {
+      margin-right: var(--item-element-gap);
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 
 .item-text {
-  max-width: 200px;
+  display: flex;
+  height: 100%;
+  align-items: center;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   flex-grow: 1;
+  margin-right: var(--item-element-gap);
 }
 
 .completed {
@@ -117,6 +127,7 @@ ul {
   height: var(--item-icon-size);
   cursor: pointer;
   margin-right: var(--item-element-gap);
+  flex-shrink: 0;
 }
 
 .toggle-completed.completed-true {
@@ -128,6 +139,12 @@ ul {
   background: url('../media/completed-false.png') no-repeat center center;
   background-size: contain;
 }
+
+.right-hand-buttons {
+  align-items: center;
+  flex-shrink: 0;
+}
+
 /* edit button */
 .edit-btn {
   border: none;

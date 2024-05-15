@@ -28,7 +28,7 @@ function TodoItem({ item, deleteItem, updateItem }) {
             value={state.editedValue}
             onChange={(e) => dispatch({ type: 'set_edited_value', payload: e.target.value })}
           />
-          <div className="right-hand-buttons">
+          <div className="right-hand-buttons flex">
             <button
               className='save-edit-btn'
               onClick={() => {
