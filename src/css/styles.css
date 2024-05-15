@@ -92,3 +92,41 @@ ul {
 .completed {
   text-decoration: line-through;
 }
+/* toggle completed */
+.toggle-completed {
+  border: none;
+  background-color: transparent;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+}
+
+.toggle-completed.completed-true {
+  background: url('../media/completed-true.png') no-repeat center center;
+  background-size: contain;
+}
+
+.toggle-completed.completed-false {
+  background: url('../media/completed-false.png') no-repeat center center;
+  background-size: contain;
+}
+/* edit button */
+.edit-btn {
+  border: none;
+  background-color: transparent;
+  width: 2rem;
+  height: 2rem;
+  background: url('../media/edit.png') no-repeat center center;
+  background-size: contain;
+  cursor: pointer;
+}
+/* delete button */
+.delete-btn {
+  border: none;
+  background-color: transparent;
+  width: 2rem; /* Adjust as needed */
+  height: 2rem; /* Adjust as needed */
+  background: url('../media/delete.png') no-repeat center center;
+  background-size: contain;
+  cursor: pointer;
+}

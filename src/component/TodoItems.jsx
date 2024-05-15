@@ -44,11 +44,11 @@ function TodoItem({ item, deleteItem, updateItem }) {
         </>
       ) : (
         <>
-          <button onClick={() => dispatch({ type: 'toggle_completed' })}>Complete</button>
+          <button className={`toggle-completed ${state.isCompleted ? 'completed-true' : 'completed-false'}`} onClick={() => dispatch({ type: 'toggle_completed' })}></button>
           <span className={`item-text ${state.isCompleted ? 'completed' : ''}`}>{item.value}</span>
           <div className="right-hand-buttons">
-            <button onClick={() => dispatch({ type: 'set_editing', payload: true })}>Edit</button>
-            <button onClick={() => deleteItem(item.id)}>Delete</button>
+            <button className='edit-btn' onClick={() => dispatch({ type: 'set_editing', payload: true })}></button>
+            <button className='delete-btn' onClick={() => deleteItem(item.id)}></button>
           </div>
         </>
       )}
