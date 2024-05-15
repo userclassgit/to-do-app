@@ -4,6 +4,7 @@
   --black: #000;
   --bg-beige: #F6ECC9;
   --input-beige: #DED5B5;
+  --item-icon-size: 1.7rem;
 }
 
 .container {
@@ -30,7 +31,7 @@
 .horizontal-space-between {
   display: flex;
   justify-content: space-between;
-
+  align-items: center;
 }
 
 body {
@@ -87,6 +88,7 @@ ul {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  flex-grow: 1;
 }
 
 .completed {
@@ -96,8 +98,8 @@ ul {
 .toggle-completed {
   border: none;
   background-color: transparent;
-  width: 2rem;
-  height: 2rem;
+  width: var(--item-icon-size);
+  height: var(--item-icon-size);
   cursor: pointer;
 }
 
@@ -114,8 +116,8 @@ ul {
 .edit-btn {
   border: none;
   background-color: transparent;
-  width: 2rem;
-  height: 2rem;
+  width: var(--item-icon-size);
+  height: var(--item-icon-size);
   background: url('../media/edit.png') no-repeat center center;
   background-size: contain;
   cursor: pointer;
@@ -124,18 +126,19 @@ ul {
 .delete-btn {
   border: none;
   background-color: transparent;
-  width: 2rem;
-  height: 2rem;
+  width: var(--item-icon-size);
+  height: var(--item-icon-size);
   background: url('../media/delete.png') no-repeat center center;
   background-size: contain;
   cursor: pointer;
+  margin-left: 7px;
 }
 /* save button in edit mode */
 .save-edit-btn {
   border: none;
   background-color: transparent;
-  width: 2rem;
-  height: 2rem;
+  width: var(--item-icon-size);
+  height: var(--item-icon-size);
   background: url('../media/save-edit.png') no-repeat center center;
   background-size: contain;
   cursor: pointer;
