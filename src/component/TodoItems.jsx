@@ -16,16 +16,20 @@ function reducer(state, action) {
 }
 
 function TodoItem({ item, deleteItem, updateItem, toggleCompleted }) {
-  const [state, dispatch] = useReducer(reducer, { ...initialState, editedValue: item.value });
+  const [state, dispatch] = useReducer(reducer, {
+    isEditing: false,
+    editedValue: item.value,
+    isCompleted: item.isCompleted
+  });
 
   return (
     <li key={item.id} className="list-item horizontal-space-between">
       {state.isEditing ? (
         <>
-          <button 
-  className={`toggle-completed ${state.isCompleted ? 'completed-true' : 'completed-false'}`} 
-  onClick={() => toggleCompleted(item.id)}
-></button>
+          <button
+            className={`toggle-completed ${item.isCompleted ? 'completed-true' : 'completed-false'}`}
+            onClick={() => toggleCompleted(item.id)}
+          ></button>
           <input
             type="text"
             value={state.editedValue}
