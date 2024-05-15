@@ -29,6 +29,7 @@ function TodoItem({ item, deleteItem, updateItem }) {
           />
           <div className="right-hand-buttons">
             <button
+              className='save-edit-btn'
               onClick={() => {
                 if (!state.editedValue.trim()) {
                   return;
@@ -37,9 +38,8 @@ function TodoItem({ item, deleteItem, updateItem }) {
                 dispatch({ type: 'set_editing', payload: false });
               }}
             >
-              Save
             </button>
-            <button onClick={() => deleteItem(item.id)}>Delete</button>
+            <button className='delete-btn' onClick={() => deleteItem(item.id)}></button>
           </div>
         </>
       ) : (
