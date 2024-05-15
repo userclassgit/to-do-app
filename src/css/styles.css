@@ -61,7 +61,7 @@ body {
 .input-and-btn {
   display: flex;
   justify-content: center;
-  gap: .5rem;
+  gap: 2px;
   height: 2.5rem;
   margin-bottom: 1.5rem;
   input {
@@ -73,6 +73,10 @@ body {
   input:focus {
     outline: none;
   }
+  input.error-placeholder::placeholder {
+    color: rgb(255, 0, 0);
+    opacity: 1;
+  }
   .add-btn {
     width: 3rem;
     background: url('../media/add-btn.png') no-repeat center center;
@@ -82,11 +86,11 @@ body {
   }
 }
 
-.error-message {
+/* .error-message {
   color: red;
   position: absolute;
   margin-top: 5px;
-}
+} */
 
 ul {
   flex-grow: 1;

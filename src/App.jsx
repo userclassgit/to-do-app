@@ -3,7 +3,6 @@ import TodoItem from './component/TodoItems';
 import './css/styles.css';
 import './css/reset.css';
 import { v4 as uuidv4 } from 'uuid';
-import addBtnImg from './media/add-btn.png'
 
 const initialState = {
   newItem: '',
@@ -61,12 +60,12 @@ function App() {
       <h1>To-do List</h1>
       <div className="input-and-btn">
         <input
+          className={!state.isValid ? 'error-placeholder' : ''}
           type="text"
-          placeholder="Add an item"
+          placeholder={!state.isValid ? 'Please enter a value.' : 'Add an item'}
           value={state.newItem}
           onChange={(e) => dispatch({ type: 'set_new_item', payload: e.target.value })}
         />
-        {!state.isValid && <p className='error-message'>Please enter a value.</p>}
         <button className='add-btn' onClick={() => addItem()}></button>
       </div>
       <ul>
