@@ -22,6 +22,7 @@ function TodoItem({ item, deleteItem, updateItem }) {
     <li key={item.id} className="list-item horizontal-space-between">
       {state.isEditing ? (
         <>
+          <button className={`toggle-completed ${state.isCompleted ? 'completed-true' : 'completed-false'}`} onClick={() => dispatch({ type: 'toggle_completed' })}></button>
           <input
             type="text"
             value={state.editedValue}
