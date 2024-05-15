@@ -20,7 +20,8 @@ function reducer(state, action) {
       } else {
         const item = {
           id: uuidv4(),
-          value: action.payload
+          value: action.payload,
+          isCompleted: false,
         };
         return { ...state, items: [...state.items, item], newItem: '', isValid: true };
       }
@@ -29,8 +30,15 @@ function reducer(state, action) {
     case 'update_item':
       return {
         ...state,
-        items: state.items.map((item) => (item.id === action.payload.id ? 
-        { ...item, value: action.payload.newValue } : item))
+        items: state.items.map((item) => (item.id === action.payload.id ?
+          { ...item, value: action.payload.newValue } : item))
+      };
+    case 'toggle_completed':
+      return {
+        ...state,
+        items: state.items.map((item) =>
+          item.id === action.payload ? { ...item, isCompleted: !item.isCompleted } : item
+        ),
       };
     default:
       throw new Error();
@@ -56,6 +64,10 @@ function App() {
     dispatch({ type: 'update_item', payload: { id, newValue } });
   };
 
+  const toggleCompleted = (id) => {
+    dispatch({ type: 'toggle_completed', payload: id });
+  };
+
   return (
     <div className='container horizontally-center-column'>
       <h1>To-do List</h1>
@@ -73,7 +85,7 @@ function App() {
         <ul>
           {state.items.map(item => {
             return (
-              <TodoItem key={item.id} item={item} deleteItem={deleteItem} updateItem={updateItem} />
+              <TodoItem key={item.id} item={item} deleteItem={deleteItem} updateItem={updateItem} toggleCompleted={toggleCompleted} />
             )
           })}
         </ul>

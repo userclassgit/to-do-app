@@ -128,7 +128,7 @@ ul {
   margin-right: var(--item-element-gap);
 }
 
-.completed {
+.item-text.completed {
   text-decoration: line-through;
 }
 /* toggle completed */
