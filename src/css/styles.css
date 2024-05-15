@@ -3,8 +3,10 @@
 :root {
   --black: #000;
   --bg-beige: #F6ECC9;
-  --input-beige: #DED5B5;
+  --input-beige: #e8debc;
+  --item-beige: #E9E0BF;
   --item-icon-size: 1.7rem;
+  --item-element-gap: 8px;
 }
 
 body {
@@ -88,8 +90,12 @@ ul {
   flex-grow: 1;
   list-style-type: none;
   width: 20rem;
-  /* .list-item {
-  } */
+  .list-item {
+    background-color: var(--item-beige);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 16px;
+  }
 }
 
 .item-text {
@@ -110,6 +116,7 @@ ul {
   width: var(--item-icon-size);
   height: var(--item-icon-size);
   cursor: pointer;
+  margin-right: var(--item-element-gap);
 }
 
 .toggle-completed.completed-true {
@@ -140,7 +147,7 @@ ul {
   background: url('../media/delete.png') no-repeat center center;
   background-size: contain;
   cursor: pointer;
-  margin-left: 7px;
+  margin-left: var(--item-element-gap);
 }
 /* save button in edit mode */
 .save-edit-btn {
