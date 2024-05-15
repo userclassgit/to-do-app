@@ -29,7 +29,8 @@ function reducer(state, action) {
     case 'update_item':
       return {
         ...state,
-        items: state.items.map((item) => (item.id === action.payload.id ? { ...item, value: action.payload.newValue } : item))
+        items: state.items.map((item) => (item.id === action.payload.id ? 
+        { ...item, value: action.payload.newValue } : item))
       };
     default:
       throw new Error();
